@@ -1,0 +1,27 @@
+{
+  "name": "myvr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "start": "webpack-dev-server --open --config config/webpack.config.js",
+    "build": "webpack --config config/webpack.build.js"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "html-webpack-plugin": "^3.2.0",
+    "three": "^0.92.0",
+    "webpack": "^4.2.0",
+    "webpack-glsl-loader": "^1.0.1"
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  }
+}
