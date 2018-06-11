@@ -1,17 +1,17 @@
 const path =require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const Webpack = require('webpack');
+const webpack = require('webpack');
 
 
 module.exports = {
   entry: {
-    aligner: './src/entries/vrAligner.js',
-    traveller: './src/entries/vrTraveller.js'
+    index: './demo/index.js',
+    backend: './demo/backend.js'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].[hash].js'
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -37,16 +37,18 @@ module.exports = {
       template: './pages/index/index.html',
       filename: 'index.html',
       hash: true,
-      chunks: ['traveller'],
-      inject: 'head'
+      chunks: ['index'],
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       template: './pages/backend/index.html',
       filename: 'backend.html',
       hash: true,
-      chunks: ['aligner'],
-      inject: 'head'
-    })
+      chunks: ['backend'],
+      inject: 'body'
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     proxy: {
@@ -55,7 +57,8 @@ module.exports = {
         changeOrigin: true
       }
     },
-    host: "100.80.168.132"
+    host: "localhost",
+    hot: true
   },
   // mode: 'development'
   mode: 'development'

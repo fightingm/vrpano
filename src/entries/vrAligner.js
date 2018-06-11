@@ -3,7 +3,7 @@
 import VrViewer from './vrView.js';
 import Overlay from '../js/overlay.js';
 
-class VrAligner {
+export default class VrAligner {
   constructor(data, container) {
     this.naviData = data;
     this.viewer = new VrViewer(container);
@@ -188,5 +188,3 @@ class VrAligner {
     return `${loadsphereUrl}?projectId=${projectId}&sceneKey=${sceneKey}&sliceRow=${sliceRow}&sliceCol=${sliceCol}&sceneThumb=${sceneThumb}`;
   }
 }
-
-window.VrAligner = VrAligner;

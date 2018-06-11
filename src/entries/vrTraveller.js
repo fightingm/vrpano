@@ -3,7 +3,7 @@ import VrViewer from './vrView';
 import Overlay from '../js/overlay';
 import GlassesButton from '../js/glassesButton';
 
-class VrTraveller {
+export default class VrTraveller {
   constructor(data, container) {
     this.naviData = data;
     this.viewer = new VrViewer(container);
@@ -153,5 +153,3 @@ class VrTraveller {
   }
 }
 VrTraveller.GlassesButton = GlassesButton;
-
-window.VrTraveller = VrTraveller;
