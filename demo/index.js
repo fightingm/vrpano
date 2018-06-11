@@ -7,6 +7,26 @@ const traveller = new VrTraveller(data, box);
 const glassesButton = new VrTraveller.GlassesButton();
 traveller.setGlassesButton(glassesButton);
 
+function getSphereSliceUrl(key) {
+    const list = [];
+    for (let i = 0; i < 8; i++) {
+      const a = [];
+      for (let j = 0; j < 4; j++) {
+        a.push(`../assets/sphereSource/${key}/pano${i}-${j}.jpg`);
+      }
+      list.push(a);
+    }
+    return list;
+  }
+
+  function getCubeSliceUrl(key) {
+    var arr = [];
+    for(var i = 1; i < 7; i++) {
+      arr.push(`../assets/cubeSource/${key}/pano${i}.jpg`);
+    }
+    return arr;
+  }
+
 
 // x: 经度，0 ~ 2π  y: 维度 -2/π ~ 2/π
 // yaw pitch roll
@@ -14,15 +34,22 @@ function getNaviData() {
     return [
     {
         "scene":{
-        "id":"3285",
-        "project_id":"982",
-        "photo_key":"1",
-        "correction":[0, 0, 0],
-        "rotation": [180, 0, 0],
-        "latlng":[39.988056,116.511203],
-        "title":"卧室",
-        "thumb_url":"http://vr.qunarzz.com/hotel-test_only2_4-406/1/micro_thumb.jpg?t=1518082619",
-        "is_main":0
+            "id":"3285",
+            "project_id":"982",
+            "photo_key":"1",
+            "correction":[0, 0, 0],
+            "rotation": [180, 0, 0],
+            "latlng":[39.988056,116.511203],
+            "title":"卧室",
+            "sphereSource": {
+                thumb: "../assets/sphereSource/1/thumb.jpg",
+                slices: getSphereSliceUrl(1)
+            },
+            "cubeSource": {
+                thumb: "../assets/cubeSource/1/thumb.jpg",
+                slices: getCubeSliceUrl(1)
+            },
+            "is_main":0
         },
         "overlays":[
         {
@@ -58,15 +85,22 @@ function getNaviData() {
         ]
     },{
         "scene":{
-        "id":"3286",
-        "project_id":"982",
-        "photo_key":"2",
-        "correction":[0,0,0],
-        "rotation": [180, 0, 0],
-        "latlng":[-9999,-9999],
-        "title":"卫生间",
-        "thumb_url":"http://vr.qunarzz.com/hotel-test_only2_4-406/2/micro_thumb.jpg?t=1518082874",
-        "is_main":1
+            "id":"3286",
+            "project_id":"982",
+            "photo_key":"2",
+            "correction":[0,0,0],
+            "rotation": [180, 0, 0],
+            "latlng":[-9999,-9999],
+            "title":"卫生间",
+            "sphereSource": {
+                thumb: "../assets/sphereSource/2/thumb.jpg",
+                slices: getSphereSliceUrl(2)
+            },
+            "cubeSource": {
+                thumb: "../assets/cubeSource/2/thumb.jpg",
+                slices: getCubeSliceUrl(2)
+            },
+            "is_main":1
         },
         "overlays":[
         {

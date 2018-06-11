@@ -26,7 +26,7 @@ export default class VrTraveller {
   setScene() {
     const { curScene } = this,
           { scene, overlays } = curScene;
-    const sourceData = this.makeSourceData(scene.project_id, scene.photo_key);
+    const sourceData = this.makeSourceData();
     this.viewer.setScene(sourceData.thumb, sourceData.slices,{
       rotation: scene.rotation,
       correction: scene.correction,
@@ -93,46 +93,49 @@ export default class VrTraveller {
     this.setScene();
   }  
   // 获取缩略图及分割图url
-  makeSourceData(id, key) {
-    const data = {};
+  makeSourceData() {
+    const { scene } = this.curScene;
+    let data = {};
     // 支持webgl
     if(this.viewer.webglSupported()) {
-      data.thumb = this.getSphereThumb(id, key);
-      data.slices = this.getSphereSliceUrl(id, key);
+      data = {
+        ...scene.sphereSource
+      };
     }else {
-      data.thumb = this.getCubeThumb(id, key);
-      data.slices = this.getCubeUrl(id, key);
+      data = {
+        ...scene.cubeSource
+      };
     }
     return data;
   }
-  getSphereThumb(id, key) {
-    return this.getSliceUrl(id, key, '', '', 'yes');
-  }
-  getSliceUrl(projectId, sceneKey, sliceRow, sliceCol, sceneThumb) {
-    const loadsphereUrl = '/entry/cpanel/service/loadsphere.php';
-    return `${loadsphereUrl}?projectId=${projectId}&sceneKey=${sceneKey}&sliceRow=${sliceRow}&sliceCol=${sliceCol}&sceneThumb=${sceneThumb}`;
-  }
-  getSphereSliceUrl(id, key) {
-    const list = [];
-    for (let i = 0; i < 8; i++) {
-      const a = [];
-      for (let j = 0; j < 4; j++) {
-        a.push(this.getSliceUrl(id, key, i, j, ''));
-      }
-      list.push(a);
-    }
-    return list;
-  }
-  getCubeThumb(id, key) {
-    return `http://vr.qunarzz.com/hotel-test_only2_4-406/${key}/face_thumb.jpg`
-  }
-  getCubeUrl(id, key) {
-    var arr = [];
-    for(var i = 1; i < 7; i++) {
-      arr.push(`/entry/cpanel/service/loadcube.php?projectKey=hotel-test_only2_4-406&sceneKey=${key}&faceIndex=${i}&sceneThumb=`);
-    }
-    return arr;
-  }
+  // getSphereThumb(id, key) {
+  //   return this.getSliceUrl(id, key, '', '', 'yes');
+  // }
+  // getSliceUrl(projectId, sceneKey, sliceRow, sliceCol, sceneThumb) {
+  //   const loadsphereUrl = '/entry/cpanel/service/loadsphere.php';
+  //   return `${loadsphereUrl}?projectId=${projectId}&sceneKey=${sceneKey}&sliceRow=${sliceRow}&sliceCol=${sliceCol}&sceneThumb=${sceneThumb}`;
+  // }
+  // getSphereSliceUrl(id, key) {
+  //   const list = [];
+  //   for (let i = 0; i < 8; i++) {
+  //     const a = [];
+  //     for (let j = 0; j < 4; j++) {
+  //       a.push(this.getSliceUrl(id, key, i, j, ''));
+  //     }
+  //     list.push(a);
+  //   }
+  //   return list;
+  // }
+  // getCubeThumb(id, key) {
+  //   return `http://vr.qunarzz.com/hotel-test_only2_4-406/${key}/face_thumb.jpg`
+  // }
+  // getCubeUrl(id, key) {
+  //   var arr = [];
+  //   for(var i = 1; i < 7; i++) {
+  //     arr.push(`/entry/cpanel/service/loadcube.php?projectKey=hotel-test_only2_4-406&sceneKey=${key}&faceIndex=${i}&sceneThumb=`);
+  //   }
+  //   return arr;
+  // }
   handleOverlayClick(key) {
     this.walkTo(key);
   }
