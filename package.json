@@ -6,6 +6,10 @@
   "private": false,
   "main": "./dist/VrPano.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fightingm/vrpano.git"
+  },
   "sideEffects": false,
   "scripts": {
     "start": "webpack-dev-server --open --config config/webpack.dev.js",
