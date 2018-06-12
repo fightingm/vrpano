@@ -1,17 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 
 module.exports = {
   entry: {
-    aligner: './src/entries/vrAligner.js',
-    traveller: './src/entries/vrTraveller.js'
+    Pano: './src/entries/vrPano.js',
+    Aligner: './src/entries/vrAligner.js',
+    Traveller: './src/entries/vrTraveller.js'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].[hash].js'
+    filename: 'Vr[name].js',
+    library: "Vr[name]",
+    libraryTarget: "umd"
   },
   module: {
     rules: [
@@ -33,17 +34,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
-    // new BundleAnalyzerPlugin()
-    // new webpack.DefinePlugin({
-    //   'process.env.NODE_ENV': '"production"'
-    // }),
-    // new CompressionPlugin({
-    //   asset: "[path].gz[query]",
-    //   algorithm: "gzip",
-    //   test: /\.(js|html)$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // })
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
+    })
   ],
   mode: 'production'
 }

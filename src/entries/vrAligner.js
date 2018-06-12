@@ -1,5 +1,4 @@
 
-
 import VrViewer from './vrView.js';
 import Overlay from '../js/overlay.js';
 
@@ -33,7 +32,7 @@ export default class VrAligner {
   setScene() {
     const { curScene } = this,
           { scene, overlays } = curScene;
-    const sourceData = this.makeSourceData(scene.project_id, scene.photo_key);
+    const sourceData = this.makeSourceData();
     this.viewer.setScene(sourceData.thumb, sourceData.slices,{
       rotation: scene.rotation,
       correction: scene.correction,
@@ -56,6 +55,15 @@ export default class VrAligner {
     const rotation = this.getRotation();
     this.naviData[index].scene.correction = correction;
     this.naviData[index].scene.rotation = rotation;
+  }
+  resetRotation() {
+    const index = this.curSceneIndex;
+    const correction = this.naviData[index].scene.correction;
+    const rotation = this.naviData[index].scene.rotation;
+    this.viewer.setInitRotation({
+      correction,
+      rotation
+    });
   }
   rotateYaw(deg) {
     this.viewer.setYawRotation(deg);
@@ -165,26 +173,16 @@ export default class VrAligner {
   handleOverlayMouseUp(e) {
     const index = this.curSceneIndex;
     this.naviData[index].overlays[this.curOverlayIndex] = this.curOverlay.data;
-    console.log(this.naviData);
     document.removeEventListener('mousemove', this.handleOverlayMouseMove);
     document.removeEventListener('mouseup', this.handleOverlayMouseUp);
   }
-  makeSourceData(projectId, key) {
-    const list = [];
-    for (let i = 0; i < 8; i++) {
-      const a = [];
-      for (let j = 0; j < 4; j++) {
-        a.push(this.getSliceUrl(projectId, key, i, j, ''));
-      }
-      list.push(a);
-    }
-    const d = {};
-    d.thumb = this.getSliceUrl(projectId, key, '', '', 'yes');
-    d.slices = list;
-    return d;
-  }
-  getSliceUrl(projectId, sceneKey, sliceRow, sliceCol, sceneThumb) {
-    const loadsphereUrl = '/entry/cpanel/service/loadsphere.php';
-    return `${loadsphereUrl}?projectId=${projectId}&sceneKey=${sceneKey}&sliceRow=${sliceRow}&sliceCol=${sliceCol}&sceneThumb=${sceneThumb}`;
+  makeSourceData() {
+    const { scene } = this.curScene;
+    let data = {
+      ...scene.sphereSource
+    };
+    return data;
   }
 }
+
+module.exports = VrAligner;

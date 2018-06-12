@@ -1,26 +1,28 @@
 {
   "name": "myvr",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "使用threejs实现的全景图浏览sdk,支持VR",
+  "author": "fightingm <417300459@qq.com>",
+  "private": false,
+  "main": "./dist/VrPano.js",
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
-    "start": "webpack-dev-server --open --config config/webpack.config.js",
+    "start": "webpack-dev-server --open --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.build.js"
   },
   "dependencies": {
+    "three": "^0.92.0"
+  },
+  "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "html-webpack-plugin": "^3.2.0",
-    "three": "^0.92.0",
     "webpack": "^4.2.0",
-    "webpack-glsl-loader": "^1.0.1"
-  },
-  "devDependencies": {
-    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-glsl-loader": "^1.0.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
   }

@@ -156,3 +156,5 @@ export default class VrTraveller {
   }
 }
 VrTraveller.GlassesButton = GlassesButton;
+
+module.exports = VrTraveller;

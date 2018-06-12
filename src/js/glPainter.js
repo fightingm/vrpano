@@ -9,6 +9,8 @@ import { LinearFilter, RGBFormat } from 'three/src/constants';
 
 import utils from './utils';
 
+let testI = 0;
+
 export default class GlPainter {
   constructor(viewer) {
     this.viewer = viewer;

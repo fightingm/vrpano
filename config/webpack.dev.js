@@ -1,13 +1,12 @@
 const path =require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 
 module.exports = {
   entry: {
-    index: './demo/index.js',
-    backend: './demo/backend.js'
+    index: './example/index',
+    backend: './example/backend'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -32,18 +31,15 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
     new HtmlWebpackPlugin({
-      template: './pages/index/index.html',
+      template: './example/index/index.html',
       filename: 'index.html',
-      hash: true,
       chunks: ['index'],
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
-      template: './pages/backend/index.html',
+      template: './example/backend/index.html',
       filename: 'backend.html',
-      hash: true,
       chunks: ['backend'],
       inject: 'body'
     }),
@@ -51,15 +47,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    proxy: {
-      '/entry': {
-        target: 'http://vr.corp.qunar.com',
-        changeOrigin: true
-      }
-    },
-    host: "localhost",
     hot: true
   },
-  // mode: 'development'
   mode: 'development'
 }
