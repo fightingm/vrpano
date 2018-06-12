@@ -1,5 +1,5 @@
 {
-  "name": "myvr",
+  "name": "vr-panorama",
   "version": "1.0.0",
   "description": "使用threejs实现的全景图浏览sdk,支持VR",
   "author": "fightingm <417300459@qq.com>",
