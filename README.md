@@ -4,9 +4,9 @@
 
 demo地址：
 
-[前端展示]("https://jsrun.net/gigKp/embedded/all/light/")
+[前端展示](http://jsrun.net/gigKp/embedded/all/light/)
 
-[录制数据]("https://jsrun.net/figKp/embedded/all/light/")
+[录制数据](http://jsrun.net/figKp/embedded/all/light/)
 
 ## 使用方法
 
