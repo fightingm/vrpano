@@ -13,8 +13,20 @@ demo地址：[前端展示]("http//jsrun.net/gigKp/embedded/all/light/")
  yarn add vr-panorama
 ```
 
+### 浏览器中使用
+根据你需要的功能引入对应的sdk文件
+```html
+<!--只包含全景图展示功能-->
+<script src="https://unpkg.com/vr-panorama@latest/dist/VrTraveller.js"></script>
+<!--只包含全景图录制数据功能-->
+<script src="https://unpkg.com/vr-panorama@latest/dist/VrAligner.js"></script>
+<!--包含VrTraveller和VrAligner-->
+<script src="https://unpkg.com/vr-panorama@latest/dist/VrPano.js"></script>
+```
+
 ### 加载依赖
 ```js
+// 如果是在浏览器中使用，不需要引入，可以直接通过window对象拿到
 import VrPano from 'vr-panorama';
 const { VrTraveller, VrAligner } = VrPano;
 
