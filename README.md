@@ -2,8 +2,11 @@
 > 基于threejs实现的vr全景图管理系统
 
 
-demo地址：[前端展示]("http//jsrun.net/gigKp/embedded/all/light/")
-            [录制数据]("http://jsrun.net/figKp/embedded/all/light/")
+demo地址：
+
+[前端展示]("http://jsrun.net/gigKp/embedded/all/light/")
+
+[录制数据]("http://jsrun.net/figKp/embedded/all/light/")
 
 ## 使用方法
 

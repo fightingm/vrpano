@@ -1,4 +1,4 @@
-
+const sourceRoot = 'https://unpkg.com/vr-panorama@1.0.0/assets';
 import VrAligner from '../../src/entries/vrAligner.js';
 
 const sourceRoot = '../../assets';
