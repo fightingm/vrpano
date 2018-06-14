@@ -2,7 +2,7 @@
 export default class TapHandler {
 	constructor(eventTarget) {
 		this.eventTarget = eventTarget;
-		var ua = navigator.userAgent.toLowerCase();
+		let ua = navigator.userAgent.toLowerCase();
 		this.onTouch = ua.indexOf("android") > -1 || ua.indexOf("iphone") > -1;
 
 		if(this.onTouch) {
@@ -22,15 +22,15 @@ export default class TapHandler {
 		this.startY = e.changedTouches[0].clientY;
 	}
 	handleTouchEnd(e) {
-		var currentX = e.changedTouches[0].clientX;
-		var currentY = e.changedTouches[0].clientY;
+		let currentX = e.changedTouches[0].clientX;
+		let currentY = e.changedTouches[0].clientY;
 
-		var distance = Math.sqrt(Math.pow(currentX-this.startX, 2) + Math.pow(currentY-this.startY, 2));
+		let distance = Math.sqrt(Math.pow(currentX-this.startX, 2) + Math.pow(currentY-this.startY, 2));
 		if(distance > 30) {
 			return true;
 		}
 
-		for(var i=0; i<this.handlers.length; i++) {
+		for(let i=0; i<this.handlers.length; i++) {
 			this.handlers[i].call(this.eventTarget, e);
 		}
 
@@ -46,7 +46,7 @@ export default class TapHandler {
 	}
 	unlisten(callback) {
 		if(this.onTouch) {
-			var index = this.handlers.indexOf(callback);
+			let index = this.handlers.indexOf(callback);
 			if(index > -1) {
 				this.handlers.splice(index, 1);
 			}

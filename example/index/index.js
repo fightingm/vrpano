@@ -28,8 +28,8 @@ function getSphereSliceUrl(key) {
 
 // 获取立方体贴图资源，缩略图+6个面的碎片图
 function getCubeSliceUrl(key) {
-  var arr = [];
-  for(var i = 1; i < 7; i++) {
+  let arr = [];
+  for(let i = 1; i < 7; i++) {
     arr.push(`${sourceRoot}/cubeSource/${key}/pano${i}.jpg`);
   }
   return arr;

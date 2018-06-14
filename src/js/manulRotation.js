@@ -16,9 +16,9 @@ export default class ManulRotation extends Rotation {
   }
   setQuaternion(quaternion, z, x, y) {
 
-    var euler = new Euler();
+    let euler = new Euler();
 
-    var order = 'ZYX';
+    let order = 'ZYX';
     euler.set( _Math.degToRad(x), _Math.degToRad(y), _Math.degToRad(z), order ); // 'ZXY' for the device, but 'YXZ' for us
 
     quaternion.setFromEuler( euler ); // orient the device

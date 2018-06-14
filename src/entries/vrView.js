@@ -170,9 +170,9 @@ export default class VrViewer {
     this.setRotation();
   }
   setRotation() {
-    var quat = new Quaternion();
-    var correction = this.correctRotation.getQuat();
-    var manual = this.manulRotation.getQuat();
+    let quat = new Quaternion();
+    let correction = this.correctRotation.getQuat();
+    let manual = this.manulRotation.getQuat();
     quat.multiply(correction);
     quat.multiply(manual);
     this.camera.quaternion.copy(quat);
@@ -259,9 +259,9 @@ export default class VrViewer {
     this.overlays.forEach(item => {
       if(this.isDeviceing) {
         item.updatePosition(this.VRcamera);
-        var position = item.getPosition();
-        var {focuserL, focuserW, focuserT, focuserH} = this.traveller.glassesButton.getFocus();
-        // var focuserL = 162, focuserW = 50, focuserT = 141, focuserH = 50;
+        let position = item.getPosition();
+        let {focuserL, focuserW, focuserT, focuserH} = this.traveller.glassesButton.getFocus();
+        // let focuserL = 162, focuserW = 50, focuserT = 141, focuserH = 50;
     		if(
     			position[0] > focuserL && position[0] < focuserL + focuserW
     			&&
@@ -315,7 +315,7 @@ export default class VrViewer {
 
   webglSupported() {
     try {
-			var canvas = document.createElement( 'canvas' ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
+			let canvas = document.createElement( 'canvas' ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
 		} catch ( e ) {
 			return false;
 		}

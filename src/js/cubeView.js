@@ -113,7 +113,7 @@ export default class VrViewer {
   }
   loadImg(src) {
     return new Promise((resolve, reject) => {
-      var img = document.createElement('img');
+      let img = document.createElement('img');
       // img.setAttribute('crossorigin', 'anonymous');
       img.src = src;
       img.onload = () => {
@@ -126,9 +126,9 @@ export default class VrViewer {
   }
   setCubeThumb(url) {
     const sides = this.getSides([url, url, url, url, url, url]);
-    for ( var i = 0; i < 6; i ++ ) {
-      var side = sides[ i ];
-      var element = document.createElement( 'div' );
+    for ( let i = 0; i < 6; i ++ ) {
+      let side = sides[ i ];
+      let element = document.createElement( 'div' );
       element.className = `cube_side_${i}`;
       element.style.width = 1026; // 2 pixels extra to close the gap.
       element.style.height = 1026;
@@ -136,7 +136,7 @@ export default class VrViewer {
       element.style.backgroundImage = `url(${side.url})`;
       element.style.backgroundPositionX = -i*1026 + 'px';
       element.style.backgroundRepeat = 'no-repeat';
-      var object = new THREE.CSS3DObject( element );
+      let object = new THREE.CSS3DObject( element );
       object.position.fromArray( side.position );
       object.rotation.fromArray( side.rotation );
       this.scene.add( object );
@@ -237,9 +237,9 @@ export default class VrViewer {
     this.setRotation();
   }
   setRotation() {
-    var quat = new THREE.Quaternion();
-    var correction = this.correctRotation.getQuat();
-    var manual = this.manulRotation.getQuat();
+    let quat = new THREE.Quaternion();
+    let correction = this.correctRotation.getQuat();
+    let manual = this.manulRotation.getQuat();
     quat.multiply(correction);
     quat.multiply(manual);
     this.camera.quaternion.copy(quat);
@@ -254,9 +254,9 @@ export default class VrViewer {
       this.manulRotation.reset(opt.rotation);
       console.log(this.manulRotation);
     }
-    var quat = new THREE.Quaternion();
-    var correction = this.correctRotation.getQuat();
-    var manual = this.manulRotation.getQuat();
+    let quat = new THREE.Quaternion();
+    let correction = this.correctRotation.getQuat();
+    let manual = this.manulRotation.getQuat();
     quat.multiply(correction);
     quat.multiply(manual);
     this.camera.quaternion.copy(quat);
@@ -365,13 +365,13 @@ export default class VrViewer {
 
     // 1.将2d坐标转换成3d坐标
     // const [x, y] = [100,100];
-    // var raycaster = new THREE.Raycaster();
-    // var mouseVector = new THREE.Vector2();
+    // let raycaster = new THREE.Raycaster();
+    // let mouseVector = new THREE.Vector2();
     // // 把鼠标坐标转换成webgl的3d坐标，webgl的原点在中心，鼠标坐标的原点在左上角
     // mouseVector.x = 2 * (x / this.dom.clientWidth) - 1;
     // mouseVector.y = - 2 * (y / this.dom.clientHeight) + 1;
     // raycaster.setFromCamera(mouseVector, this.camera);
-    // var intersects = raycaster.intersectObjects([this.sphere]);
+    // let intersects = raycaster.intersectObjects([this.sphere]);
     // if(intersects.length > 0) {
     //   console.log(intersects[0].point);
     //   overlay.render(this.dom, intersects[0].point);
@@ -393,10 +393,10 @@ export default class VrViewer {
     this.overlays.forEach(item => {
       if(this.isDeviceing) {
         item.updatePosition(this.VRcamera);
-        var position = item.getPosition();
-        var {focuserL, focuserW, focuserT, focuserH} = this.traveller.glassesButton.getFocus();
+        let position = item.getPosition();
+        let {focuserL, focuserW, focuserT, focuserH} = this.traveller.glassesButton.getFocus();
 
-        // var focuserL = 162, focuserW = 50, focuserT = 141, focuserH = 50;
+        // let focuserL = 162, focuserW = 50, focuserT = 141, focuserH = 50;
     		if(
     			position[0] > focuserL && position[0] < focuserL + focuserW
     			&&

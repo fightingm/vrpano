@@ -18,10 +18,10 @@ export default class CorrectRotation extends Rotation {
   }
   setQuaternion(quaternion, z, x, y) {
 
-    var euler = new Euler();
+    let euler = new Euler();
 
     // 这里的两个order是通过不断尝试推测出来的
-    var order = 'ZXY';
+    let order = 'ZXY';
     if(z!== 0 && x !== 0) {
       order = 'XZY'
     }

@@ -68,7 +68,7 @@ export default class VrTraveller {
     text.className = "overlay-label";
     text.innerHTML = entity.title;
     element.appendChild(text);
-    var arrow = document.createElement("img");
+    let arrow = document.createElement("img");
     arrow.className = "overlay-arrow";
     arrow.src = "//s.qunarzz.com/piao_tts/vr_navi_arrow.png";
     element.appendChild(arrow);
@@ -130,8 +130,8 @@ export default class VrTraveller {
   //   return `http://vr.qunarzz.com/hotel-test_only2_4-406/${key}/face_thumb.jpg`
   // }
   // getCubeUrl(id, key) {
-  //   var arr = [];
-  //   for(var i = 1; i < 7; i++) {
+  //   let arr = [];
+  //   for(let i = 1; i < 7; i++) {
   //     arr.push(`/entry/cpanel/service/loadcube.php?projectKey=hotel-test_only2_4-406&sceneKey=${key}&faceIndex=${i}&sceneThumb=`);
   //   }
   //   return arr;

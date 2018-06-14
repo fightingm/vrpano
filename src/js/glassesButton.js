@@ -23,7 +23,7 @@ export default class GlassesButton {
   	this.bindEvents();
   }
   computeSize() {
-      var size = this.getSize();
+      let size = this.getSize();
     	if(size.width == this.oldWidth && size.height == this.oldHeight) {
     		return;
     	}
@@ -53,16 +53,16 @@ export default class GlassesButton {
     		this.exitButton.innerHTML = "退出VR";
     		this.container.appendChild(this.exitButton);
     	}
-      var createCenter = function(width, height) {
-    		var center = document.createElement("div");
+      let createCenter = function(width, height) {
+    		let center = document.createElement("div");
         center.className = 'center-point';
     		center.style.width = width +'px';
     		center.style.height = height +'px';
     		center.style.borderRadius = width +'px';
     		return center;
     	};
-      var createFocuser = function(width, height) {
-        var focuser = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      let createFocuser = function(width, height) {
+        let focuser = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         focuser.style.left = 0;
         focuser.style.top = 0;
         focuser.style.display = 'none';
@@ -75,12 +75,12 @@ export default class GlassesButton {
         focuser.style['strokeWidth'] = '1px';
         focuser.style['strokeLinecap'] = 'round';
 
-        var circle1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        let circle1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         circle1.setAttribute('role', 'background');
         circle1.style.position = 'absolute';
         circle1.setAttribute('stroke', 'white');
 
-        var circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        let circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         circle2.setAttribute('role', 'foreground');
         circle2.style.position = 'absolute';
         circle2.setAttribute('stroke', 'red');
@@ -108,17 +108,17 @@ export default class GlassesButton {
     	this.container.appendChild(this.centerRight);
   }
   reposition() {
-    var size = this.getSize(), centerScale = 0.08;
+    let size = this.getSize(), centerScale = 0.08;
 
   	if(size.width < size.height) {
-  		var base = size.height/4;
+  		let base = size.height/4;
   		this.transform(this.focuserLeft, this.focuserL, this.focuserT-base);
   		this.transform(this.focuserRight, this.focuserL, this.focuserT+base);
 
   		this.transform(this.centerLeft, this.focuserL, this.focuserT-base, 0, centerScale);
   		this.transform(this.centerRight, this.focuserL, this.focuserT+base, 0, centerScale);
   	} else {
-  		var base = size.width/4;
+  		let base = size.width/4;
   		this.transform(this.focuserLeft, this.focuserL-base, this.focuserT);
   		this.transform(this.focuserRight, this.focuserL+base, this.focuserT);
 
@@ -138,13 +138,13 @@ export default class GlassesButton {
   	element.style.transform = element.style.webkitTransform = 'translate('+ left +'px, '+ top +'px) translateZ(0) rotate(' + rotate + 'deg) scale('+ scale +')';
   }
   bindEvents() {
-    var tapHandler = new TapHandler(this.openButton);
+    let tapHandler = new TapHandler(this.openButton);
   	tapHandler.listen(this.showGlassesMode.bind(this));
 
-  	var tapHandler = new TapHandler(this.container);
+  	let tapHandler = new TapHandler(this.container);
   	tapHandler.listen(this.showExitButton.bind(this));
 
-  	var tapHandler = new TapHandler(this.exitButton);
+  	let tapHandler = new TapHandler(this.exitButton);
   	tapHandler.listen(this.hideGlassesMode.bind(this));
   }
   showGlassesMode(e) {
@@ -243,19 +243,19 @@ export default class GlassesButton {
   	this.openButton.style.display = 'none';
   }
   drawWhiteFocuser() {
-  	var r = this.focuserW/2;
-  	var circleAngle = -90;
-  	var d = [];
-  	var i = 0;
+  	let r = this.focuserW/2;
+  	let circleAngle = -90;
+  	let d = [];
+  	let i = 0;
   	while(true) {
   		circleAngle += 10;
   		if(i == 36) {
   			break;
   		}
 
-  	    var radians = (circleAngle / 180) * Math.PI;
-  	    var x = r + Math.cos(radians) * r;
-  	    var y = r + Math.sin(radians) * r;
+  	    let radians = (circleAngle / 180) * Math.PI;
+  	    let x = r + Math.cos(radians) * r;
+  	    let y = r + Math.sin(radians) * r;
 
   	    if(i == 0) {
   	    	d.push('M ');
@@ -287,7 +287,7 @@ export default class GlassesButton {
   }
   setCurrentOverlay(overlay) {
     this.currentWalkOverlay = overlay;
-    var size = this.getSize();
+    let size = this.getSize();
   }
   getFocus() {
     const size = this.getSize();
@@ -321,13 +321,13 @@ export default class GlassesButton {
   		this.currentWalkOverlay.handleClick();
   	} else {
   		this.circleAngle += 10;
-  	    var radians = (this.circleAngle / 180) * Math.PI;
+  	    let radians = (this.circleAngle / 180) * Math.PI;
 
-  	    var r = this.focuserW/2;
-  	    var x = r + Math.cos(radians) * r;
-  	    var y = r + Math.sin(radians) * r;
+  	    let r = this.focuserW/2;
+  	    let x = r + Math.cos(radians) * r;
+  	    let y = r + Math.sin(radians) * r;
 
-  	    var d = this.foreCircleLeft.getAttribute('d');
+  	    let d = this.foreCircleLeft.getAttribute('d');
   	    if(this.countTime == 0) {
   	    	d += 'M ';
   	    } else {

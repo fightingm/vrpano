@@ -27,12 +27,6 @@ export default class Overlay {
     this.dirAngle = {x, y};
     this.setMesh();
   }
-  reSetMesh(point) {
-    let tagMesh = new Mesh();
-    // 兼容原来的数据，让原来的导航在当前系统中也能显示到正确的位置上
-    tagMesh.position.copy(point);
-    this.tagMesh = tagMesh;
-  }
   setMesh() {
     let tagMesh = new Mesh();
     // 兼容原来的数据，让原来的导航在当前系统中也能显示到正确的位置上
@@ -41,40 +35,39 @@ export default class Overlay {
   }
   // 更新overlay的位置
   updatePosition(camera) {
-    // console.log(camera);
     // 判断是vr模式还是正常模式
     if(this.traveller && this.traveller.isGlassesMode()) {
       this.tagMesh.updateMatrixWorld();
-      var leftEyePart = this.dom.querySelector('[eye=left]');
+      let leftEyePart = this.dom.querySelector('[eye=left]');
   		if(leftEyePart) {
         if(utils.isOffScreen(this.tagMesh, camera.cameraL)) {
           leftEyePart.style.display = 'none';
         }else {
           leftEyePart.style.display = 'block';
-          var position = utils.toScreenPosition(this.tagMesh, camera.cameraL, this.container, 'left');
+          let position = utils.toScreenPosition(this.tagMesh, camera.cameraL, this.container, 'left');
           this.position = position;
-          var rotateX = -(90+_Math.radToDeg(camera.cameraL.rotation.x));
+          let rotateX = -(90+_Math.radToDeg(camera.cameraL.rotation.x));
           rotateX = Math.max(-60, Math.min(rotateX, -30));
           leftEyePart.style.transform = 'translate3d('+ position[0] +'px, '+ position[1] +'px, 0) rotateZ('+ 0 +'deg) '+
           'rotateX('+ rotateX +'deg) scale('+ 1 +')';
         }
-  			// var position = this.projection_.angleToPixel(this.dirAngle_[0], this.dirAngle_[1], 'left');
+  			// let position = this.projection_.angleToPixel(this.dirAngle_[0], this.dirAngle_[1], 'left');
   			// this.transform(leftEyePart, position.left, position.top, rotateX, rotateZ, 'left');
   		}
 
-  		var rightEyePart = this.dom.querySelector('[eye=right]');
+  		let rightEyePart = this.dom.querySelector('[eye=right]');
   		if(rightEyePart) {
         if(utils.isOffScreen(this.tagMesh, camera.cameraR)) {
           rightEyePart.style.display = 'none';
         }else {
           rightEyePart.style.display = 'block';
-          var position = utils.toScreenPosition(this.tagMesh, camera.cameraR, this.container, 'right');
-          var rotateX = -(90+_Math.radToDeg(camera.cameraR.rotation.x));
+          let position = utils.toScreenPosition(this.tagMesh, camera.cameraR, this.container, 'right');
+          let rotateX = -(90+_Math.radToDeg(camera.cameraR.rotation.x));
           rotateX = Math.max(-60, Math.min(rotateX, -30));
           rightEyePart.style.transform = 'translate3d('+ position[0] +'px, '+ position[1] +'px, 0) rotateZ('+ 0 +'deg) '+
           'rotateX('+ rotateX +'deg) scale('+ 1 +')';
         }
-  			// var position = this.projection_.angleToPixel(this.dirAngle_[0], this.dirAngle_[1], 'right');
+  			// let position = this.projection_.angleToPixel(this.dirAngle_[0], this.dirAngle_[1], 'right');
   			// this.transform(rightEyePart, position.left, position.top, rotateX, rotateZ, 'right');
   		}
     }else {
@@ -90,7 +83,7 @@ export default class Overlay {
         this.dom.style.display = "block";
         const position = utils.toScreenPosition(this.tagMesh, camera, this.container);
         // 向下看的时候导航指向z轴，向上看导航指向y轴
-        var rotateX = -(90+_Math.radToDeg(camera.rotation.x));
+        let rotateX = -(90+_Math.radToDeg(camera.rotation.x));
         rotateX = Math.max(-60, Math.min(rotateX, -30));
         this.dom.style.transform = 'translate3d('+ position[0] +'px, '+ position[1] +'px, 0) rotateZ('+ 0 +'deg) '+
         'rotateX('+ rotateX +'deg) scale('+ 1 +')';
@@ -101,7 +94,6 @@ export default class Overlay {
         // this.dom.style.top = position[1] + "px";
       }
     }
-
   }
   // 将traveller对象传递过来
   setTraveller(traveller) {

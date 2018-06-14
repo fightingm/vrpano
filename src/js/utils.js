@@ -14,8 +14,8 @@ export default {
    * @returns boolean
    */
   isOffScreen (obj, camera){
-      var frustum = new Frustum(); //Frustum用来确定相机的可视区域
-      var cameraViewProjectionMatrix = new Matrix4();
+      let frustum = new Frustum(); //Frustum用来确定相机的可视区域
+      let cameraViewProjectionMatrix = new Matrix4();
       cameraViewProjectionMatrix.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse); //获取相机的法线
       frustum.setFromMatrix(cameraViewProjectionMatrix); //设置frustum沿着相机法线方向
 
@@ -30,15 +30,15 @@ export default {
    * @returns x坐标和y坐标
    */
   toScreenPosition (obj, camera, container, opt_eye){
-      var vector = new Vector3();
-      var size ={
+      let vector = new Vector3();
+      let size ={
         width: container.clientWidth,
         height: container.clientHeight
       };
-      var w = size.width / 2;
-      var h = size.height / 2;
-      var wfactor = w;
-    	var hfactor = h;
+      let w = size.width / 2;
+      let h = size.height / 2;
+      let wfactor = w;
+    	let hfactor = h;
       if(opt_eye) {
         if(size.width < size.height) {
     			hfactor = h/2;
@@ -109,9 +109,9 @@ export default {
    * @returns 对应球面坐标
    */
   lglt2xyz (lg,lt,r){
-    var x = r * Math.sin(lt)* Math.cos(lg);
-    var y = r * Math.cos(lt);
-    var z = r * Math.sin(lg) * Math.sin(lt);
+    let x = r * Math.sin(lt)* Math.cos(lg);
+    let y = r * Math.cos(lt);
+    let z = r * Math.sin(lg) * Math.sin(lt);
     return new Vector3(x, y, z);
   },
 
@@ -245,7 +245,7 @@ export default {
    */
   loadImg(src) {
     return new Promise((resolve, reject) => {
-      var img = document.createElement('img');
+      let img = document.createElement('img');
       // img.setAttribute('crossorigin', 'anonymous');
       img.src = src;
       img.onload = () => {

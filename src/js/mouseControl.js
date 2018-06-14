@@ -118,8 +118,8 @@ export default class MouseControl {
           step();
         }
         function step() {
-          var xvalue = easeOut(t, b, speedX, d);
-          var yvalue = easeOut(t,b, speedY, d);
+          let xvalue = easeOut(t, b, speedX, d);
+          let yvalue = easeOut(t,b, speedY, d);
           const curX = (_this.startManulRotation[0] - xvalue) %360,
                 curY = (_this.startManulRotation[1] + yvalue) %360;
           _this.viewer.handleMouseMove(curX, curY);
